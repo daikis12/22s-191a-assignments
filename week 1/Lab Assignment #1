@@ -1,0 +1,34 @@
+<html>
+    <h1>Daiki's Kitchen</h1>
+        <h2>Takoyaki (Japanese Octopus Balls)</h2>
+            <h3>2 servings</h3>
+               <img src="/img/takoyaki.jpg"
+            <h2>Ingredients</h2>
+        <ul>
+            <li>500g of Takoyali Flour</li>
+            <li>2 Eggs</li>
+            <li>500ml of Water</li>
+            <li>100g of Green Onions</li>
+            <li>50g of Pickled Ginger</li>
+            <li>75g of Octupus</li>
+            <li>20ml of Olive Oil</li>
+            <li>Mayonnaise</li>
+            <li>Japanese Takoyaki Sauce</li>
+        </ul>
+        
+    <h2>Instructions</h2>    
+        <ol>
+            <li>In a large bowl, mix Takoyaki flour, two eggs, and water.</li>
+            <li>Chop green oninons, pickled ginger, and octopus in small pieces.</li>
+            <li>Turn on Takoyaki maker, put olive oil in each ball, and wait until it's hot.</li>
+            <li>Put the flour mixture into the balls.</li>
+            <li>Add chopped ingredients into the batter that is being cooked in the balls.</li>
+            <li>When the batter gets brown, use a toothpick to flip it over.</li>
+            <li>When fully cooked, put Takoyaki onto a plate and serve with mayonnaise and Japanese Takoyaki sause.</li>
+        </ol>
+        <style>
+            html { 
+                background-color: rgb(225, 248, 187);
+            }
+        </style>
+</html>
