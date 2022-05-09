@@ -1,5 +1,5 @@
 // declare variables
-let mapOptions = {'center': [34.0709,-118.444],'zoom':5}
+let mapOptions = {'center': [34.0709,-118.444],'zoom':8}
 
 // use the variables
 const map = L.map('the_map').setView(mapOptions.center, mapOptions.zoom);
@@ -9,13 +9,28 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 }).addTo(map);
 
 // create a function to add markers
-function addMarker(lat,lng,title,message){
-    console.log(message)
-    L.marker([lat,lng]).addTo(map).bindPopup(`<h2>${title}</h2> <h3>${message}</h3>`)
-    return message
+function addMarker(data){
+    // console.log(data)
+    // these are the names of our lat/long fields in the google sheets:
+    L.circle([data.lat,data.lng],100).addTo(map).bindPopup(`<h2>${data['What is the name of your favorite Japanese restaurant?']}</h2> <h3>${data['What do you like about it?']}</h3>`)
+    createButtons(data.lat,data.lng,data['What is the name of your favorite Japanese restaurant?'])
+    return
 }
 
-const dataUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSMp69QF0ErDoM8xCf_OZ5RNKlUlw2xMYKMLotWLjbQGsPk6NagJRmuDaFqeaid49qnppH9Vs6NTct4/pub?output=csv"
+function createButtons(lat,lng,title){
+    const newButton = document.createElement("button"); // adds a new button
+    newButton.id = "button"+title; // gives the button a unique id
+    newButton.innerHTML = title; // gives the button a title
+    newButton.setAttribute("lat",lat); // sets the latitude 
+    newButton.setAttribute("lng",lng); // sets the longitude 
+    newButton.addEventListener('click', function(){
+        map.flyTo([lat,lng]); //this is the flyTo from Leaflet
+    })
+    const spaceForButtons = document.getElementById('placeForButtons')
+    spaceForButtons.appendChild(newButton);//this adds the button to our page.
+}
+
+const dataUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQcLKvTrHJwbNxwJP4pOi-BPeG_pRihIgnep3CaUJdruASXgv96Y9lM5TGLrFUb9bQqY9TPlWh8zHLX/pub?output=csv"
 
 function loadData(url){
     Papa.parse(url, {
@@ -29,7 +44,7 @@ function processData(results){
     console.log(results)
     results.data.forEach(data => {
         console.log(data)
-        addMarker(data.lat,data.lng,data['If applicable, what companies did you work under and what were your job titles?'],data['Have you faced any challenges finding employment/internship opportunities in the US because of your immigration status?'])
+        addMarker(data)
     })
 }
 

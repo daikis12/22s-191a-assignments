@@ -1,5 +1,5 @@
 // declare variables
-let mapOptions = {'center': [34.0709,-118.444],'zoom':5}
+let mapOptions = {'center': [34.0709,-118.444],'zoom':8}
 
 // use the variables
 const map = L.map('the_map').setView(mapOptions.center, mapOptions.zoom);
@@ -8,11 +8,12 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
 
+// create a function to add markers
 function addMarker(data){
     // console.log(data)
     // these are the names of our lat/long fields in the google sheets:
-    L.marker([data.lat,data.lng]).addTo(map).bindPopup(`<h2>${data['Location']}</h2> <h3>${data['OpenEnded']}</h3>`)
-    createButtons(data.lat,data.lng,data['Location'])
+    L.circle([data.lat,data.lng],100).addTo(map).bindPopup(`<h2>${data['What is the name of your favorite Japanese restaurant?']}</h2> <h3>${data['What do you like about it?']}</h3>`)
+    createButtons(data.lat,data.lng,data['What is the name of your favorite Japanese restaurant?'])
     return
 }
 
@@ -29,7 +30,7 @@ function createButtons(lat,lng,title){
     spaceForButtons.appendChild(newButton);//this adds the button to our page.
 }
 
-const dataUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vS2WyfKTyZJ-_ja3GGrxoAXwranavyDGXYsxeFUO4nvHpCJrkKhChymXQqUEyhdGLnz9VN6BJv5tOjp/pub?gid=1560504149&single=true&output=csv"
+const dataUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQcLKvTrHJwbNxwJP4pOi-BPeG_pRihIgnep3CaUJdruASXgv96Y9lM5TGLrFUb9bQqY9TPlWh8zHLX/pub?output=csv"
 
 function loadData(url){
     Papa.parse(url, {
